@@ -1,9 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  build: {
-    outDir: 'dist' // this is what Vercel will use
-  }
-})
+  root: '.', // make sure this is pointing to the folder containing index.html
+});

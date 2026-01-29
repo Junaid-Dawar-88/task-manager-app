@@ -4,12 +4,10 @@
   "private": true,
   "type": "module",
 "scripts": {
-  "dev:backend": "bun --hot src/index.ts",
-  "start:backend": "NODE_ENV=production bun src/index.ts",
-  "build:backend": "bun run build.ts",
-  "dev:frontend": "vite",
-  "build:frontend": "vite build",
-  "preview:frontend": "vite preview"
+  "dev": "vite",
+  "build": "vite build",
+  "serve": "vite preview",
+  "build:frontend": "vite build"
 },
   "dependencies": {
     "@ebay/nice-modal-react": "^1.2.13",
