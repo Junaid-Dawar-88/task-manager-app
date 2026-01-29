@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "dev": "bun --hot src/index.ts",
-    "start": "NODE_ENV=production bun src/index.ts",
-    "build": "bun run build.ts",
-     "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview"
-  },
+"scripts": {
+  "dev:backend": "bun --hot src/index.ts",
+  "start:backend": "NODE_ENV=production bun src/index.ts",
+  "build:backend": "bun run build.ts",
+  "dev:frontend": "vite",
+  "build:frontend": "vite build",
+  "preview:frontend": "vite preview"
+},
   "dependencies": {
     "@ebay/nice-modal-react": "^1.2.13",
     "@prisma/adapter-better-sqlite3": "^7.2.0",
