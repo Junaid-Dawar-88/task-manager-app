@@ -1,4 +1,4 @@
-import prisma from "PrismaClient";
+import { prisma } from "@/lib/prisma";
 
 interface TodoInput {
   id?: number;
