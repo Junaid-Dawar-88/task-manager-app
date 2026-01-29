@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Plus, X } from "lucide-react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { handlePostData, handleUpdateTodo, type Todos } from "@/api-call/api-call";
+import {  type Todos } from "@/api-call/api-call";
 import { useUpdateTodo } from "../query/update-query";
 import usePostTodo from "../query/post-query";
 
@@ -36,7 +35,7 @@ const TodoModal = ({ editing , setEditing , todos, setTodos }: any) => {
     const newTodo: Todos = {
       id: Date.now(), 
       text,
-      description,
+      description: description || '___',
       status: status || 'pending',
     };
 

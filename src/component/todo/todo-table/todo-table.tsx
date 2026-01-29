@@ -5,11 +5,14 @@ import { handleGetData, type Todos } from '@/api-call/api-call';
 import { useDeleteTodo } from '../query/delete-query';
 import SearchTodo from '@/search-todo/search-todo';
 import { useNavigate } from "react-router-dom";
+import { setPriority } from 'node:os';
 
 
 const TodoTable = () => {
   const [todos, setTodos] = useState<Todos[]>([]);
   const [editing , setEditing] = useState<any[]>([])
+  const [searchItem , setSearchItem] = useState('')
+  const [searchPriority , setSearchPriority] = useState('all')
  const deleteMutation = useDeleteTodo()
 const navigate = useNavigate();
 
@@ -33,6 +36,15 @@ const navigate = useNavigate();
     deleteMutation.mutate(id);
     setTodos((prev) => prev.filter((t) => t.id !== id));
   };
+
+  const handleSearch = todos.filter((I) => {
+     const inputSearch = 
+     I.text.toLowerCase().includes(searchItem.toLowerCase())
+
+     const selectSearch = searchPriority === 'all' || I.status === searchPriority
+     
+     return inputSearch && selectSearch
+  })
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -89,7 +101,11 @@ const navigate = useNavigate();
           ))}
         </div>
                <div className='py-3'>
-                <SearchTodo />
+                <SearchTodo searchItem={searchItem} 
+                            setSearchItem ={setSearchItem }
+                            searchPreiority ={searchPriority }
+                            setSearchPriority={setSearchPriority}
+                />
                </div>
         {/* ================= TABLE ================= */}
         <div className="bg-slate-800 rounded-xl shadow-2xl overflow-hidden border border-slate-700">
@@ -112,50 +128,59 @@ const navigate = useNavigate();
                 </tr>
               </thead>
 
-              <tbody>
-  {todos.map((todo, idx) => (
-    <tr
-      key={todo.id}
-      onClick={() => navigate(`/SinglePage/${todo.id}`)}
-      className={`cursor-pointer border-b transition-colors duration-200
-        ${idx % 2 === 0 ? 'bg-slate-800' : 'bg-slate-750'}
-        hover:bg-slate-700/50 border-slate-700`}
-    >
-      <td className="px-6 py-4 text-slate-300 text-sm">
-        {todo.text}
-      </td>
-
-      <td className="px-6 py-4 text-slate-300 text-sm">
-        {todo.description}
-      </td>
-
-      <td className="px-6 py-4 text-slate-300 text-sm">
-        {todo.status}
-      </td>
-
-      <td
-        className="px-6 py-4"
-        onClick={(e) => e.stopPropagation()} // prevent row click
-      >
-        <div className="flex items-center justify-center gap-2">
-          <button
-            onClick={() => setEditing(todo)}
-            className="p-2 hover:bg-blue-500/20 rounded-lg"
-          >
-            <Edit2 className="w-4 h-4 text-blue-400" />
-          </button>
-
-          <button
-            onClick={() => handleConfirmDelete(todo.id)}
-            className="p-2 hover:bg-red-500/20 rounded-lg"
-          >
-            <Trash2 className="w-4 h-4 text-red-400" />
-          </button>
-        </div>
+             <tbody>
+  {handleSearch.length === 0 ? (
+    <tr>
+      <td colSpan={4} className="px-6 py-4 text-center text-slate-400">
+        item not found
       </td>
     </tr>
-  ))}
+  ) : (
+    handleSearch.map((todo, idx) => (
+      <tr
+        key={todo.id}
+        onClick={() => navigate(`/SinglePage/${todo.id}`)}
+        className={`cursor-pointer border-b transition-colors duration-200
+          ${idx % 2 === 0 ? 'bg-slate-800' : 'bg-slate-750'}
+          hover:bg-slate-700/50 border-slate-700`}
+      >
+        <td className="px-6 py-4 text-slate-300 text-sm">
+          {todo.text}
+        </td>
+
+        <td className="px-6 py-4 text-slate-300 text-sm">
+          {todo.description}
+        </td>
+
+        <td className="px-6 py-4 text-slate-300 text-sm">
+          {todo.status}
+        </td>
+
+        <td
+          className="px-6 py-4"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-center gap-2">
+            <button
+              onClick={() => setEditing(todo)}
+              className="p-2 hover:bg-blue-500/20 rounded-lg"
+            >
+              <Edit2 className="w-4 h-4 text-blue-400" />
+            </button>
+
+            <button
+              onClick={() => handleConfirmDelete(todo.id)}
+              className="p-2 hover:bg-red-500/20 rounded-lg"
+            >
+              <Trash2 className="w-4 h-4 text-red-400" />
+            </button>
+          </div>
+        </td>
+      </tr>
+    ))
+  )}
 </tbody>
+
 
             </table>
           </div>
