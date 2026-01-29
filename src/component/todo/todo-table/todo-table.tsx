@@ -6,6 +6,7 @@ import { useDeleteTodo } from '../query/delete-query';
 import SearchTodo from '@/search-todo/search-todo';
 import { useNavigate } from "react-router-dom";
 import { setPriority } from 'node:os';
+import { useQuery } from '@tanstack/react-query';
 
 
 const TodoTable = () => {
@@ -29,6 +30,7 @@ const navigate = useNavigate();
     };
     fetchTodos();
   }, []);
+
 
   // ================= DELETE =================  
   const handleConfirmDelete = (id: number) => {
@@ -130,11 +132,11 @@ const navigate = useNavigate();
 
              <tbody>
   {handleSearch.length === 0 ? (
-    <tr>
-      <td colSpan={4} className="px-6 py-4 text-center text-slate-400">
-        item not found
-      </td>
-    </tr>
+     <div className="text-center w-full py-12">
+              <p className="text-slate-400 text-lg">
+                No tasks yet. Create one to get started!
+              </p>
+            </div>
   ) : (
     handleSearch.map((todo, idx) => (
       <tr
@@ -180,18 +182,8 @@ const navigate = useNavigate();
     ))
   )}
 </tbody>
-
-
-            </table>
-          </div>
-
-          {todos.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-slate-400 text-lg">
-                No tasks yet. Create one to get started!
-              </p>
-            </div>
-          )}
+   </table>
+        </div>
         </div>
       </div>
     </div>

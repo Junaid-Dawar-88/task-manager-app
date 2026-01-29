@@ -13,6 +13,12 @@ const TodoModal = ({ editing , setEditing , todos, setTodos }: any) => {
   const updateMutation = useUpdateTodo()
   const postMutation = usePostTodo()
 
+   const clearForm = () => {
+     setText('')
+     setDescription('')
+     setStatus('pending')
+     setShowModal(false)
+   }
   // ================= PREFILL WHEN EDIT =================
   useEffect(() => {
     if (editing) {
@@ -47,12 +53,9 @@ const TodoModal = ({ editing , setEditing , todos, setTodos }: any) => {
       },
     });
 
-    setShowModal(false);
+    // setShowModal(false);
   }
-
-  setText("");
-  setDescription("");
-  setStatus("pending");
+clearForm()
 };
 
 
@@ -134,17 +137,23 @@ const TodoModal = ({ editing , setEditing , todos, setTodos }: any) => {
               >
                 Cancel
               </button>
-
-              <button
-                onClick={() =>{
-                 handleSubmit()
-                  setShowModal(false)
-                 
-                }}
+                 <div>
+                  {editing ? (
+                    <button
+                onClick={handleSubmit}
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg"
               >
-                {editing ? "Update Task" : "Add Task"}
+                Update Task
               </button>
+                  ) : (
+                    <button
+                onClick={handleSubmit}
+                className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg"
+              >
+                Add Task
+              </button>
+                  )}
+                 </div>
             </div>
           </div>
         </div>
