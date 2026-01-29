@@ -18,17 +18,17 @@ To run for production:
 bun start
 ```
 
-<!-- TASK MANAGER APPLICATION -->
+TASK MANAGER APPLICATION
 
 A modern Task Manager application built using Bun, Prisma (SQLite), and TanStack Query. The project
 focuses on performance, clean architecture, and a smooth user experience.
 
-<!-- TECH STACK -->
+TECH STACK
 
 Frontend: React, TypeScript, TanStack Query, Axios, Tailwind CSS
 Backend: Bun, Prisma ORM, SQLite
 
-<!-- FEATURES -->
+FEATURES
 
 • Create tasks
 • View task details in a separate card component
@@ -37,19 +37,19 @@ Backend: Bun, Prisma ORM, SQLite
 • Instant UI updates using TanStack Query
 • Persistent data storage with SQLite
 
-<!-- HOW IT WORKS  -->
+HOW IT WORKS 
 
 Users can create tasks that are stored in a SQLite database using Prisma. TanStack Query handles data
 fetching, caching, and synchronization. Clicking on any task opens a separate card component displaying
 full task details.
 
-<!-- PROJECT STRUCTURE OVERVIEW -->
+PROJECT STRUCTURE OVERVIEW
 
 The project is organized into frontend components, API handlers, Prisma schema files, and a Bun-powered
 backend server for clean separation of concerns.
 
 
-<!-- SETUP INSTRUCTIONS -->
+SETUP INSTRUCTIONS
 
 • Clone the repository
 • Install dependencies using bun install
@@ -58,7 +58,7 @@ backend server for clean separation of concerns.
 • Run the frontend development server
 
 
-<!-- FUTURE ENHANCEMENTS -->
+FUTURE ENHANCEMENTS
 
 • Authentication and authorization
 • Task priorities and due dates
