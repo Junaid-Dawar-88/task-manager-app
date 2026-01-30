@@ -52,14 +52,9 @@ const TodoModal = ({ editing , setEditing , todos, setTodos }: any) => {
         alert("Failed to add todo!");
       },
     });
-
-    // setShowModal(false);
   }
 clearForm()
 };
-
-
-
   return (
     <>
       <button
@@ -68,7 +63,6 @@ clearForm()
       >
         <Plus size={20} /> Add New Todo
       </button>
-
       {showModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl w-full max-w-md border border-slate-700 animate-in fade-in zoom-in duration-300">
@@ -86,7 +80,6 @@ clearForm()
                 <X size={24} />
               </button>
             </div>
-
             <div className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
@@ -99,7 +92,6 @@ clearForm()
                   className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
                   Description (Optional)
@@ -110,7 +102,6 @@ clearForm()
                   className="w-full px-4 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white resize-none"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
                   Status
@@ -126,12 +117,14 @@ clearForm()
                 </select>
               </div>
             </div>
-
             <div className="flex gap-3 p-6 border-t border-slate-700">
               <button
                 onClick={() => {
                   setShowModal(false);
                   setEditing(null);
+                  setText('')
+                  setDescription('')
+                  setStatus('pending')
                 }}
                 className="flex-1 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg"
               >

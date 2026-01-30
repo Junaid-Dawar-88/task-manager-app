@@ -5,13 +5,10 @@ import { handleGetData, type Todos } from '@/api-call/api-call';
 import { useDeleteTodo } from '../query/delete-query';
 import SearchTodo from '@/search-todo/search-todo';
 import { useNavigate } from "react-router-dom";
-import { setPriority } from 'node:os';
-import { useQuery } from '@tanstack/react-query';
-
 
 const TodoTable = () => {
   const [todos, setTodos] = useState<Todos[]>([]);
-  const [editing , setEditing] = useState<any[]>([])
+  const [editing , setEditing] = useState<Todos | null>(null)
   const [searchItem , setSearchItem] = useState('')
   const [searchPriority , setSearchPriority] = useState('all')
  const deleteMutation = useDeleteTodo()
@@ -132,7 +129,7 @@ const navigate = useNavigate();
 
              <tbody>
   {handleSearch.length === 0 ? (
-     <div className="text-center w-full py-12">
+     <div className="text-center mb-5 w-full py-12">
               <p className="text-slate-400 text-lg">
                 No tasks yet. Create one to get started!
               </p>
