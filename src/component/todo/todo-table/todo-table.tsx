@@ -129,11 +129,11 @@ const navigate = useNavigate();
 
              <tbody>
   {handleSearch.length === 0 ? (
-     <div className="text-center mb-5 w-full py-12">
-              <p className="text-slate-400 text-lg">
-                No tasks yet. Create one to get started!
-              </p>
-            </div>
+     <tr>
+        <td colSpan={5} className="text-center py-12 text-gray-500">
+          No data found
+        </td>
+      </tr>
   ) : (
     handleSearch.map((todo, idx) => (
       <tr
